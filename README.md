@@ -1,32 +1,74 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# Woodlands and Witches
 
-Welcome,
+-Description-
 
-This is the Code Institute student template for deploying your third portfolio project, the Python command-line project. The last update to this file was: **March 14, 2023**
+<img src='assets/images/amiresponsive.webp' alt='Am I Responsive site image'>
 
-## Reminders
+1. [User Stories](#user-stories)
+2. [Features](#features)
+3. [Testing](#testing)
+4. [Deployment](#deployment)
+5. [Credits](#credits)
+6. [Media](#media)
 
-- Your code must be placed in the `run.py` file
-- Your dependencies must be placed in the `requirements.txt` file
-- Do not edit any of the other files or your code may not deploy properly
+## User Stories
 
-## Creating the Heroku app
+- 
 
-When you create the app, you will need to add two buildpacks from the _Settings_ tab. The ordering is as follows:
+## Features 
 
-1. `heroku/python`
-2. `heroku/nodejs`
+- 
 
-You must then create a _Config Var_ called `PORT`. Set this to `8000`
+## Testing 
+1. 
 
-If you have credentials, such as in the Love Sandwiches project, you must create another _Config Var_ called `CREDS` and paste the JSON into the value field.
+| Function | MacBook | iPad | iPhone | Pixel 6 | Comments |
+| -------- | :-----: | :---: | :---: | :-----: | -------- |
 
-Connect your GitHub repository and deploy as normal.
+### Validator Testing 
 
-## Constraints
+#### HTML Checker
 
-The deployment terminal is set to 80 columns by 24 rows. That means that each line of text needs to be 80 characters or less otherwise it will be wrapped onto a second line.
+<img src='assets/images/readme-html.webp' alt='HTML Checker result'>
 
----
+#### W3C
 
-Happy coding!
+<img src='assets/images/readme-jigsaw.webp' alt='W3C Validator result'>
+
+#### Lighthouse
+
+<img src='assets/images/readme-lighthouse.webp' alt='Lighthouse score results'>
+
+#### Wave
+
+
+#### JSHint
+
+<img src='assets/images/readme-jshint.webp' alt='JSHint results'>
+
+## Deployment
+
+The site was deployed via the following steps:
+1. Cloned the basic repository from [Code Institute](https://github.com/Code-Institute-Org/p3-template)
+2. Created new repository in [own GitHub](https://github.com/crazycooky77/ci_project3) for the cloned repository
+3. Created new app on [Heroku](https://dashboard.heroku.com/apps)
+4. Linked Heroku to cloned GitHub repository
+5. Enabled automatic deploys
+
+### Issues
+
+
+
+## Credits 
+
+### Content 
+
+- The base template was cloned from the [Code Institute GitHub repository](https://github.com/Code-Institute-Org/p3-template)
+- 
+
+## Media
+
+### Wireframes
+
+
+<img src='assets/images/readme-wireframe.webp' alt='Wireframe image'>
