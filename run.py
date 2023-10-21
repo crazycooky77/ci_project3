@@ -1,4 +1,5 @@
 from random import randrange
+import time
 
 # Your code goes here.
 # You can delete these comments, but do not change the name of this file
@@ -26,16 +27,16 @@ You can choose between 4 characters:
 	while True:
 
 		# Get user input for character selection
-		selection = input('Type in the number or character type to make your selection: ')
+		char_sel = input('Type in the number or character type to make your selection: ')
 
 		# If valid, enter character selection into a variable
-		if selection == '1' or selection.capitalize() == 'Witch':
+		if char_sel == '1' or char_sel.capitalize() == 'Witch':
 			character = 'Witch'
-		elif selection == '2' or selection.capitalize() == 'Druid':
+		elif char_sel == '2' or char_sel.capitalize() == 'Druid':
 			character = 'Druid'
-		elif selection == '3' or selection.capitalize() == 'Pixie':
+		elif char_sel == '3' or char_sel.capitalize() == 'Pixie':
 			character = 'Pixie'
-		elif selection == '4' or selection.capitalize() == 'Nymph':
+		elif char_sel == '4' or char_sel.capitalize() == 'Nymph':
 			character = 'Nymph'
 
 		# Print the selected character to the user if valid
@@ -45,9 +46,58 @@ You can choose between 4 characters:
 			break
 		# Repeat the loop if invalid, to get a valid selection
 		except UnboundLocalError:
-			print(f'\nYou entered {selection}. Please type 1 or Witch, 2 or Druid, 3 or Pixie, 4 or Nymph')
+			print(f'\nYou entered {char_sel}. Please type 1 or Witch, 2 or Druid, 3 or Pixie, 4 or Nymph')
 			continue
 
+def game_selections(input_req, wrong_input, choices_nr, choices_text):
+	'''
+	Functions that let the user make custom choices in the game
+	'''
+	while True:
+
+		# Get user input for game selection
+		game_sel = input(input_req)
+
+		# If valid, enter selection into a variable
+		if game_sel in choices_nr:
+			selection = choices_text[int(game_sel) - 1]
+		elif game_sel.capitalize() in choices_text:
+			selection = game_sel.capitalize()
+
+		# Print the selection to the user if valid
+		try:
+			print(f'You selected {selection}')
+			return selection
+			break
+		# Repeat the loop if invalid, to get a valid selection
+		except UnboundLocalError:
+			print(f'\nYou entered {game_sel}. ' + wrong_input)
+			continue
+
+def gameplay():
+	'''
+	Function that runs the full game
+	'''
+	print('Welcome to Woodlands and Witches! Let\'s begin our game')
+	character_selection()
+
+	# Pause before continuing the game
+	time.sleep(1)
+	print('''
+You wake up in the middle of a dark forest.
+There are 3 paths ahead of you.
+1) One path leads to a Cave.
+2) One leads to a Clearing.
+3) The last path leads to a River.
+What do you choose?
+		''')
+
+	# First story choice for the user
+	first_req = 'Type in the number or location to make your selection: '
+	first_invalid = 'Please type 1 or Cave, 2 or Clearing, 3 or River'
+	first_choices = {'choices_nr': ['1', '2', '3'], 'choices_text': ['Cave', 'Clearing', 'River']}
+	game_selections(first_req, first_invalid, **first_choices)
+
+
 # Start the game
-print('Welcome to Woodlands and Witches! Let\'s begin our game')
-character_selection()
+gameplay()
