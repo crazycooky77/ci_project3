@@ -15,6 +15,7 @@ def roll_dice(roll_request, dice_nr):
 Enter any text, or just press the "Enter" key, to roll the die.\n''')
 	die_roll = randrange(1, dice_nr + 1)
 	print(f'You rolled {die_roll}.')
+	return die_roll
 
 
 def game_selections(input_req, wrong_input, *choices):
@@ -27,10 +28,10 @@ def game_selections(input_req, wrong_input, *choices):
 		game_sel = input(input_req)
 
 		# If valid, enter selection into a variable
-		if 0 <= int(game_sel) <= len(choices):
-			selection = choices[int(game_sel) - 1]
-		elif game_sel.capitalize() in choices:
+		if game_sel.capitalize() in choices:
 			selection = game_sel.capitalize()
+		elif 0 <= int(game_sel) <= len(choices):
+			selection = choices[int(game_sel) - 1]
 
 		# Print the selection to the user if valid
 		try:
@@ -53,7 +54,7 @@ def gameplay():
 	print('''
 You can choose between 4 characters:
 1) A Witch with powerful magical abilities
-2) A Druid who can transform ino a jaguar
+2) A Druid who can transform into a jaguar
 3) A mischievous Pixie who attacks with pixie dust
 4) A Nymph, who is a friend to, and will be aided by, trees
 		''')
@@ -61,7 +62,6 @@ You can choose between 4 characters:
 	char_invalid = 'Please type 1 or Witch, 2 or Druid, 3 or Pixie, 4 or Nymph'
 	characters = ['Witch', 'Druid', 'Pixie', 'Nymph']
 	character = game_selections(char_sel, char_invalid, *characters)
-	print(character)
 
 	# Pause before continuing the game
 	time.sleep(1)
@@ -84,7 +84,20 @@ What do you choose?
 	time.sleep(1)
 	first_roll = 'Roll the dice to determine what happens when you arrive at your destination.'
 	# User rolls die
-	roll_dice(first_roll, 6)
+	first_die = roll_dice(first_roll, 6)
+	time.sleep(1)
+	# Outcome of first die roll
+	if (first_die % 2) == 0:
+		print('''
+A giant panther appears, goes up to you,
+and nudges your hand with it's head.
+It wants to make friends!
+		''')
+	else:
+		print('''
+A giant panther appears, looking at you menacingly...
+What will you do? Roll the dice!
+		''')
 
 
 # Start the game
