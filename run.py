@@ -90,18 +90,19 @@ What do you choose?'\n''')
 and nudges your hand with it's head.
 It wants to make friends!\n''')
 	else:
-		# Unlucky outcome for odd numbers
-		first_odd_roll = ('''A giant panther appears, looking at you menacingly...
+		# Unlucky outcome for odd numbers (first choice sub die roll)
+		first_sub_roll = ('''A giant panther appears, looking at you menacingly...
 What will you do? Roll the dice!\n''')
 		# Unlucky outcome die roll
-		first_odd_die = roll_dice(first_odd_roll, 20)
-		if 1 <= first_odd_die <= 3:
+		first_sub_die = roll_dice(first_sub_roll, 20)
+		if 1 <= first_sub_die <= 3:
 			# Game over for die rolls 1 - 3
 			print('''You try attacking the big cat, but you're too slow.
 It swipes at you with a giant paw,
 and everything turns black!\n''')
 			time.sleep(3)
 			print('You died... Game Over')
+			quit()
 		elif character == 'Witch':
 			# Good Witch outcome for die rolls 4 - 20
 			print('''You send a huge blast of arcane magic at the big cat and defeat it.
@@ -150,15 +151,15 @@ Do you Knock on the door, or Barge right in?\n''')
 			print('''An old crone opens the door and looks at you suspiciously.
 Do you 1) Talk to her or 2) try to Knock her Out (KO)?\n''')
 
-			# Second story unlucky outcome choice for the user
-			second_unlucky_req = 'Type in the number or word to make your selection: '
-			second_unlucky_invalid = 'Please type 1 or Talk, 2 or KO'
-			second_unlucky_choices = ['Talk', 'KO']
-			second_unlucky_sel = game_selections(second_unlucky_req, second_unlucky_invalid, *second_unlucky_choices)
+			# Unlucky outcome choice for the user (second choice sub choice)
+			second_sub_req = 'Type in the number or word to make your selection: '
+			second_sub_invalid = 'Please type 1 or Talk, 2 or KO'
+			second_sub_choices = ['Talk', 'KO']
+			second_sub_sel = game_selections(second_sub_req, second_sub_invalid, *second_sub_choices)
 
 			# Pause before continuing the game
 			time.sleep(1)
-			if second_unlucky_sel == 'Talk':
+			if second_sub_sel == 'Talk':
 				# Third story choice for the user
 				print('''You are the one the crone has seen in visions previously.
 She wants to train you as her protege...
@@ -170,11 +171,33 @@ Do you agree?\n''')
 				third_choices = ['Yes', 'No']
 				third_sel = game_selections(third_req, third_invalid, *third_choices)
 
+				# Pause before continuing the game
+				time.sleep(1)
 				if third_sel == 'Yes':
-				# First ending option
+					# First ending option
 					print('''You begin learning everything you can from your mentor.
 Your story ends here... for now!''')
 
+				else:
+					# Third story die roll for potential unlucky outcome
+					third_roll = '''The crone can't risk anyone else finding her cabin and attacks you.
+Roll the dice to see if you're able to defeat her!'''
+					# User rolls die
+					third_die = roll_dice(third_roll, 20)
+					time.sleep(1)
+
+					# Outcome of third die roll
+					if 16 <= third_die <= 20:
+						# Game over for die rolls 16 - 20
+						print('''You try to defend yourself, but the old crone overcomes you.
+You're unable to stand against her might!\n''')
+						time.sleep(3)
+						print('You died... Game Over')
+						quit()
+	print('''You defeat the crone, take over her cabin,
+and start looking through all of her ancient tomes.
+You learn all you can of her magic and enchantments.
+Your story ends here... for now!''')
 
 # Start the game
 gameplay()
