@@ -163,7 +163,17 @@ Do you 1) Talk to her or 2) try to Knock her Out (KO)?\n''')
 				print('''You are the one the crone has seen in visions previously.
 She wants to train you as her protege...
 Do you agree?\n''')
-				
+
+				# Third story choice for the user
+				third_req = 'Type in 1 or Yes, 2 or No, to make your selection: '
+				third_invalid = 'Please type 1 or Yes, 2 or No'
+				third_choices = ['Yes', 'No']
+				third_sel = game_selections(third_req, third_invalid, *third_choices)
+
+				if third_sel == 'Yes':
+				# First ending option
+					print('''You begin learning everything you can from your mentor.
+Your story ends here... for now!''')
 
 
 # Start the game
