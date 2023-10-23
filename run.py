@@ -138,6 +138,27 @@ You transform into a jaguar and make friends with the big cat.
 It joins you on your journey!
 			''')
 
+	# Pause before continuing the game
+	time.sleep(1)
+	print('''
+You continue on and see a little cabin
+with smoke coming out of the chimney.
+Do you knock on the door, or barge right in?
+	''')
+
+	# Second story choice for the user
+	second_req = 'Type in the number or word to make your selection: '
+	second_invalid = 'Please type 1 or Knock, 2 or Barge'
+	second_choices = ['Knock', 'Barge']
+	second_sel = game_selections(second_req, second_invalid, *second_choices)
+
+	# Pause before continuing the game
+	time.sleep(1)
+	# Outcome of second user choice
+	if second_sel == 'Knock':
+		# User rolls die
+		second_roll = 'Roll the dice to see who opens the door.'
+		second_die = roll_dice(second_roll, 6)
 
 
 
