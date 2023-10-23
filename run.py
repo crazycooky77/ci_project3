@@ -141,7 +141,29 @@ Do you Knock on the door, or Barge right in?\n''')
 		second_roll = 'Roll the dice to see who opens the door.'
 		second_die = roll_dice(second_roll, 6)
 
+		# Outcome of second die roll
+		if (second_die % 2) != 0:
+			# Lucky outcome
+			print('An old crone opens the door and warmly welcomes you inside.')
+		else:
+			# Unlucky outcome
+			print('''An old crone opens the door and looks at you suspiciously.
+Do you 1) Talk to her or 2) try to Knock her Out (KO)?\n''')
 
+			# Second story unlucky outcome choice for the user
+			second_unlucky_req = 'Type in the number or word to make your selection: '
+			second_unlucky_invalid = 'Please type 1 or Talk, 2 or KO'
+			second_unlucky_choices = ['Talk', 'KO']
+			second_unlucky_sel = game_selections(second_unlucky_req, second_unlucky_invalid, *second_unlucky_choices)
+
+			# Pause before continuing the game
+			time.sleep(1)
+			if second_unlucky_sel == 'Talk':
+				# Third story choice for the user
+				print('''You are the one the crone has seen in visions previously.
+She wants to train you as her protege...
+Do you agree?\n''')
+				
 
 
 # Start the game
