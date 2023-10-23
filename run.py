@@ -88,16 +88,58 @@ What do you choose?
 	time.sleep(1)
 	# Outcome of first die roll
 	if (first_die % 2) == 0:
+		# Lucky outcome for even numbers
 		print('''
 A giant panther appears, goes up to you,
 and nudges your hand with it's head.
 It wants to make friends!
 		''')
 	else:
-		print('''
+		# Unlucky outcome for odd numbers
+		first_odd_roll = ('''
 A giant panther appears, looking at you menacingly...
 What will you do? Roll the dice!
 		''')
+		# Unlucky outcome die roll
+		first_odd_die = roll_dice(first_odd_roll, 20)
+		if 1 <= first_odd_die <= 3:
+			# Game over for die rolls 1 - 3
+			print('''
+You try attacking the big cat, but you're too slow.
+It swipes at you with a giant paw,
+and everything turns black!
+			''')
+			time.sleep(3)
+			print('You died... Game Over')
+		elif character == 'Witch':
+			# Good Witch outcome for die rolls 4 - 20
+			print('''
+You send a huge blast of arcane magic at the big cat and defeat it.
+It agrees to help you on your quest.
+			''')
+		elif character == 'Pixie':
+			# Good Pixie outcome for die rolls 4 - 20
+			print('''
+You blow a huge cloud of pixie dust into the big cat's face.
+It becomes charmed by you and your dust, and starts following you around.
+			''')
+		elif character == 'Nymph':
+			# Good Nymph outcome for die rolls 4 - 20
+			print('''
+You get your tree friends to help you.
+They surround the big cat, who jumps up the branches and climbs the tree.
+It falls asleep on the tree limbs, thanking you for the assistance.
+It wants to repay the favour.
+			''')
+		elif character == 'Druid':
+			# Good Druid outcome for die rolls 4 - 20
+			print('''
+You transform into a jaguar and make friends with the big cat.
+It joins you on your journey!
+			''')
+
+
+
 
 
 # Start the game
