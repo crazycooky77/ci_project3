@@ -5,11 +5,15 @@ import time
 # You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
-def roll_dice(dice_nr):
+def roll_dice(roll_request, dice_nr):
 	'''
 	Function for random number output to simulate dice rolls
 	'''
-	return(randrange(1, dice_nr + 1))
+	input(f'''
+{roll_request}
+Enter any text, or just press the "Enter" key, to roll the die.\n''')
+	die_roll = randrange(1, dice_nr + 1)
+	print(f'You rolled {die_roll}.')
 
 def character_selection():
 	'''
@@ -97,6 +101,12 @@ What do you choose?
 	first_invalid = 'Please type 1 or Cave, 2 or Clearing, 3 or River'
 	first_choices = {'choices_nr': ['1', '2', '3'], 'choices_text': ['Cave', 'Clearing', 'River']}
 	game_selections(first_req, first_invalid, **first_choices)
+
+	# Pause before continuing the game
+	time.sleep(1)
+	first_roll = 'Roll the dice to determine what happens when you arrive at your destination.'
+	# User rolls die
+	roll_dice(first_roll, 6)
 
 
 # Start the game
