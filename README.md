@@ -1,6 +1,6 @@
 # Woodlands and Witches
 
-Join us for a lovely Dungeons & Dragons type game called Woodlands and Witches! You will be told a story and presented with choices to make. Those choices will influence how the rest of the story goes, and whether or not you survive. So choose carefully!
+Join us for a lovely Dungeons & Dragons type game called Woodlands and Witches! You will be told a story and presented with choices to make. Those choices will influence how the rest of the story goes, and whether you survive. So choose carefully!
 
 <img src='assets/images/game-image.webp' alt='Game start image'>
 
@@ -42,9 +42,9 @@ Join us for a lovely Dungeons & Dragons type game called Woodlands and Witches! 
 ### Validator Testing 
 
 #### PEP8
+Minor errors were identified in the validator (tabs vs spaces and lines too long). Everything was resolved and no further errors are shown in PEP8.
 
-<img src='assets/images/readme-pep8.webp' alt='PEP8 result'>
-
+<img src='assets/images/pep8.webp' alt='PEP8 result'>
 
 ## Deployment
 
@@ -56,7 +56,6 @@ The site was deployed via the following steps:
 5. Enabled automatic deploys
 
 ### Issues
-
 
 
 ## Credits 
