@@ -1,10 +1,8 @@
-from termcolor import colored, cprint
+from termcolor import colored
 from random import randrange
 import time
-
-# Your code goes here.
-# You can delete these comments, but do not change the name of this file
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
+
 
 def roll_dice(roll_request, dice_nr):
 	"""
