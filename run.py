@@ -136,11 +136,11 @@ def second_story_part():
 	Function that runs the second part of the story
 	"""
 	# Create variables for later use
-	knock_lucky = ''
-	talk_crone = ''
-	barge_lucky = ''
-	ko_choice = ''
-	disagree = ''
+	knock_lucky = None
+	talk_crone = None
+	barge_lucky = None
+	ko_choice = None
+	disagree = None
 
 	# Pause before continuing the game
 	time.sleep(5)
