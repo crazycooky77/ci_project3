@@ -6,6 +6,10 @@ import time
 # Write your code to expect a terminal of 80 characters wide and 24 rows high
 
 
+class NewGame(Exception):
+    pass
+
+
 def roll_dice(roll_request, dice_nr):
     """
     Function for random number output to simulate dice rolls
@@ -69,8 +73,6 @@ def character_selection():
     char_invalid = 'Please type 1 or Witch, 2 or Druid, 3 or Pixie, 4 or Nymph'
     characters = ['Witch', 'Druid', 'Pixie', 'Nymph']
     character = game_selections(char_sel, char_invalid, *characters)
-    # Pause before continuing the game
-    time.sleep(3)
     return character
 
 
@@ -91,7 +93,7 @@ What do you choose?\n''', 'light_yellow'))
     first_choices = ['Cave', 'Clearing', 'River']
     game_selections(first_req, first_invalid, *first_choices)
 
-    first_roll = '''Roll the dice to determine what happens
+    first_roll = '''Roll the die to determine what happens
 when you arrive at your destination.'''
     # User rolls die
     first_die = roll_dice(first_roll, 6)
@@ -105,7 +107,7 @@ It wants to make friends!\n''', 'light_grey'))
         # Unlucky outcome for odd numbers (first choice sub die roll)
         first_sub_roll = ('''A giant panther appears,
 looking at you menacingly...
-What will you do? Roll the dice!\n''')
+What will you do? Roll the die!\n''')
         # Unlucky outcome die roll
         first_sub_die = roll_dice(first_sub_roll, 20)
         if 1 <= first_sub_die <= 3:
@@ -113,12 +115,12 @@ What will you do? Roll the dice!\n''')
             print(colored
                   ('''You try attacking the big cat, but you're too slow.
 It swipes at you with a giant paw,
-and everything turns black!\n''', 'light-red', attrs=['bold']))
+and everything turns black!\n''', 'light_red', attrs=['bold']))
             # Pause before continuing the game
             time.sleep(3)
             print(colored('You died... Game Over',
-                          'light-red', attrs=['bold']))
-            quit()
+                          'light_red', attrs=['bold']))
+            raise NewGame
         elif character == 'Witch':
             # Good Witch outcome for die rolls 4 - 20
             print(colored('''You send a huge blast of arcane magic
@@ -167,7 +169,7 @@ Do you 1) Knock on the door, or 2) Barge right in?\n''', 'light_yellow'))
     # Outcome of second user choice
     if second_sel == 'Barge':
         # User rolls die
-        second_sub_roll = ('''Roll the dice to see'
+        second_sub_roll = ('''Roll the die to see'
 what awaits you inside the cabin.''')
         second_sub_die = roll_dice(second_sub_roll, 20)
 
@@ -179,7 +181,7 @@ sends a blast of magic your way.''', 'light_red', attrs=['bold']))
             time.sleep(3)
             print(colored('You died... Game Over', 'light_red',
                           attrs=['bold']))
-            quit()
+            raise NewGame
         else:
             # Lucky outcome
             print(colored('''You barge in and tackle the old crone inside.
@@ -189,7 +191,7 @@ Do you 1) Talk to her, or 2) try to Knock her Out (Knockout)?\n''',
 
     elif second_sel == 'Knock':
         # User rolls die
-        second_roll = 'Roll the dice to see who opens the door.'
+        second_roll = 'Roll the die to see who opens the door.'
         second_die = roll_dice(second_roll, 6)
 
         # Outcome of second die roll
@@ -243,7 +245,7 @@ Do you agree?\n''', 'light_yellow'))
             print(colored
                   ('''You begin learning everything you can from your mentor.
 Your story ends here... for now!''', 'light_green', attrs=['bold']))
-            quit()
+            raise NewGame
         else:
             # Third story die roll for potential unlucky outcome
             print(colored('''The crone can\'t risk anyone else
@@ -268,30 +270,45 @@ You're unable to stand against her might!\n''', 'light_red', attrs=['bold']))
             time.sleep(3)
             print(colored
                   ('You died... Game Over', 'light_red', attrs=['bold']))
-            quit()
+            raise NewGame
         else:
             # Second good story ending option
             print(colored('''You defeat the crone, take over her cabin,
 and start looking through all of her ancient tomes.
 You learn all you can of her magic and enchantments.
 Your story ends here... for now!''', 'light_green', attrs=['bold']))
-            quit()
+            raise NewGame
 
 
 def gameplay():
     """
     Function that runs the full game
     """
-    # Start the game
-    character = character_selection()
-    # Pause before continuing the game
-    time.sleep(3)
-    # First game options
-    first_story_part(character)
-    # Pause before continuing the game
-    time.sleep(3)
-    # Second set of game options
-    second_story_part()
+    while True:
+        try:
+            # Start the game
+            character = character_selection()
+            # First game options
+            first_story_part(character)
+            # Pause before continuing the game
+            time.sleep(3)
+            # Second set of game options
+            second_story_part()
+        except NewGame:
+            pass
+        while True:
+            # See if the user wants to play again
+            restart = input('Play again? Y or N\n')
+            if restart == 'Y' or restart == 'y':
+                # Restart the game
+                gameplay()
+            elif restart == 'N' or restart == 'n':
+                # Quit the game
+                quit()
+            else:
+                # Ask for valid input
+                print('Please enter "Y" or "N"')
+                continue
 
 
 # Run the game
