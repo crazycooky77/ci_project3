@@ -4,14 +4,20 @@ Join us for a lovely Dungeons & Dragons type game called Woodlands and Witches! 
 
 <img src='assets/images/game-image.webp' alt='Game start image'>
 
-1. [User Stories](#user-stories)
+1. [User Experience](#user-experience)
 2. [Features](#features)
-3. [Testing](#testing)
-4. [Deployment](#deployment)
-5. [Credits](#credits)
-6. [Media](#media)
+3. [Technologies](#technologies)
+4. [Testing](#testing)
+5. [Deployment](#deployment)
+6. [Credits](#credits)
+7. [Media](#media)
 
-## User Stories
+## User Experience
+
+### Gameplay
+Target audience and reasons for playing (and playing again). How long is a game, single or multiplayer.
+
+### User Stories
 
 - As a user, I want to be able to play a D&D-type game on my own
 - As a user, I want to be able to choose a customised character for the game
@@ -33,11 +39,13 @@ Join us for a lovely Dungeons & Dragons type game called Woodlands and Witches! 
 - __Character-specific outcomes__ are available, depending on story situations
 - __Multiple story endings__ are available, depending on choices the user makes, and random die rolls
 
+## Technologies
+
 ## Testing 
 1. 
 
-| Function | MacBook | Pixel 8 | Comments |
-| -------- | :-----: |:-------:| -------- |
+| Function | Expectation | Outcome | Comments |
+|----------|:-----------:|:-------:|----------|
 
 ### Validator Testing 
 
