@@ -1,13 +1,29 @@
 from termcolor import colored
 from random import randrange
 import time
+from storylines import *
 
 
-# Write your code to expect a terminal of 80 characters wide and 24 rows high
-
-
+# Custom exception for restart_game function
 class NewGame(Exception):
     pass
+
+
+def restart_game():
+    """
+    Function to enable the user to restart the game
+    (for wins and losses)
+    """
+    restart = input('Play again? Y or N\n')
+    if restart == 'Y' or restart == 'y':
+        # Restart the game
+        gameplay()
+    elif restart == 'N' or restart == 'n':
+        # Quit the game
+        quit()
+    else:
+        # Ask for valid input
+        print('Please enter "Y" or "N"')
 
 
 def roll_dice(roll_request, dice_nr):
@@ -57,21 +73,12 @@ def character_selection():
     """
     Function that runs the first part of the story
     """
-    print(colored('Welcome to Woodlands and Witches! Let\'s begin our game\n',
-                  'light_grey'))
+    print(colored(welcome_story, 'light_grey'))
     # Pause before continuing the game
     time.sleep(3)
 
     # Character selection
-    print(colored('''You can choose between 4 characters:
-1) A Witch with powerful magical abilities
-2) A Druid who can transform into a jaguar
-3) A mischievous Pixie who attacks with pixie dust
-4) A Nymph, who is a friend to, and will be aided by, trees\n''',
-                  'light_yellow'))
-    char_sel = 'Type in the number or character type to make your selection: '
-    char_invalid = 'Please type 1 or Witch, 2 or Druid, 3 or Pixie, 4 or Nymph'
-    characters = ['Witch', 'Druid', 'Pixie', 'Nymph']
+    print(colored(char_sel_story, 'light_yellow'))
     character = game_selections(char_sel, char_invalid, *characters)
     return character
 
@@ -80,69 +87,42 @@ def first_story_part(character):
     """
     Function that runs the first part of the story
     """
-    print(colored('''You wake up in the middle of a dark forest.
-There are 3 paths ahead of you:
-1) One path leads to a Cave.
-2) One leads to a Clearing.
-3) The last path leads to a River.
-What do you choose?\n''', 'light_yellow'))
+    print(colored(path_choice_story, 'light_yellow'))
 
-    # First story choice for the user
-    first_req = 'Type in the number or location to make your selection: '
-    first_invalid = 'Please type 1 or Cave, 2 or Clearing, 3 or River'
-    first_choices = ['Cave', 'Clearing', 'River']
-    game_selections(first_req, first_invalid, *first_choices)
+    # Path story choice for the user
+    game_selections(path_req, path_invalid, *path_choices)
 
-    first_roll = '''Roll the die to determine what happens
-when you arrive at your destination.'''
     # User rolls die
-    first_die = roll_dice(first_roll, 6)
-    # Outcome of first die roll
-    if (first_die % 2) == 0:
-        # Lucky outcome for even numbers
-        print(colored('''A giant panther appears, goes up to you,
-and nudges your hand with it's head.
-It wants to make friends!\n''', 'light_grey'))
+    path_die = roll_dice(path_roll, 6)
+    # Outcome of path die roll
+    if (path_die % 2) == 0:
+        # Lucky path outcome for even numbers
+        print(colored(path_lucky_story, 'light_grey'))
     else:
-        # Unlucky outcome for odd numbers (first choice sub die roll)
-        first_sub_roll = ('''A giant panther appears,
-looking at you menacingly...
-What will you do? Roll the die!\n''')
-        # Unlucky outcome die roll
-        first_sub_die = roll_dice(first_sub_roll, 20)
-        if 1 <= first_sub_die <= 3:
+        # Unlucky path outcome for odd numbers
+        panther_roll = path_unlucky_story
+        # Unlucky path outcome die roll
+        panther_die = roll_dice(panther_roll, 20)
+        if 1 <= panther_die <= 3:
             # Game over for die rolls 1 - 3
-            print(colored
-                  ('''You try attacking the big cat, but you're too slow.
-It swipes at you with a giant paw,
-and everything turns black!\n''', 'light_red', attrs=['bold']))
+            print(colored(panther_unlucky_outcome,
+                          'light_red', attrs=['bold']))
             # Pause before continuing the game
             time.sleep(3)
-            print(colored('You died... Game Over',
-                          'light_red', attrs=['bold']))
+            print(colored(game_over, 'light_red', attrs=['bold']))
             raise NewGame
         elif character == 'Witch':
-            # Good Witch outcome for die rolls 4 - 20
-            print(colored('''You send a huge blast of arcane magic
-at the big cat and defeat it.
-It agrees to help you on your quest.\n''', 'light_grey'))
+            # Good Witch lucky path outcome for die rolls 4 - 20
+            print(colored(witch_attack, 'light_grey'))
         elif character == 'Pixie':
-            # Good Pixie outcome for die rolls 4 - 20
-            print(colored('''You blow a huge cloud of pixie dust
-into the big cat's face.
-It becomes charmed by you and your dust,
-and starts following you around.\n''', 'light_grey'))
+            # Good Pixie lucky path outcome for die rolls 4 - 20
+            print(colored(pixie_attack, 'light_grey'))
         elif character == 'Nymph':
-            # Good Nymph outcome for die rolls 4 - 20
-            print(colored('''You get your tree friends to help you.
-They surround the big cat, who jumps up the branches and climbs the tree.
-It falls asleep on the tree limbs, thanking you for the assistance.
-It wants to repay the favour.\n''', 'light_grey'))
+            # Good Nymph lucky path outcome for die rolls 4 - 20
+            print(colored(nymph_attack, 'light_grey'))
         elif character == 'Druid':
-            # Good Druid outcome for die rolls 4 - 20
-            print(colored('''You transform into a jaguar
-and make friends with the big cat.
-It joins you on your journey!\n''', 'light_grey'))
+            # Good Druid lucky path outcome for die rolls 4 - 20
+            print(colored(druid_attack, 'light_grey'))
 
 
 def second_story_part():
@@ -156,68 +136,51 @@ def second_story_part():
     ko_choice = None
     disagree = None
 
-    print(colored('''You continue on and see a little cabin
-with smoke coming out of the chimney.
-Do you 1) Knock on the door, or 2) Barge right in?\n''', 'light_yellow'))
+    print(colored(cabin_choice_story, 'light_yellow'))
 
-    # Second story choice for the user
-    second_req = 'Type in the number or word to make your selection: '
-    second_invalid = 'Please type 1 or Knock, 2 or Barge'
-    second_choices = ['Knock', 'Barge']
-    second_sel = game_selections(second_req, second_invalid, *second_choices)
+    # Cabin story choice for the user
+    cabin_sel = game_selections(cabin_req, cabin_invalid, *cabin_choices)
 
-    # Outcome of second user choice
-    if second_sel == 'Barge':
+    # Outcome of cabin user choice
+    if cabin_sel == 'Barge':
         # User rolls die
-        second_sub_roll = ('''Roll the die to see'
-what awaits you inside the cabin.''')
+        second_sub_roll = cabin_roll
         second_sub_die = roll_dice(second_sub_roll, 20)
 
         if 1 <= second_sub_die <= 4:
-            # Unlucky outcome
-            print(colored('''You barge in and the old crone inside
-sends a blast of magic your way.''', 'light_red', attrs=['bold']))
+            # Cabin barge unlucky outcome
+            print(colored(barge_unlucky_story, 'light_red', attrs=['bold']))
             # Pause before continuing the game
             time.sleep(3)
-            print(colored('You died... Game Over', 'light_red',
-                          attrs=['bold']))
+            print(colored(game_over, 'light_red', attrs=['bold']))
             raise NewGame
         else:
-            # Lucky outcome
-            print(colored('''You barge in and tackle the old crone inside.
-Do you 1) Talk to her, or 2) try to Knock her Out (Knockout)?\n''',
-                          'light_yellow'))
+            # Cabin barge lucky outcome
+            print(colored(barge_lucky_story, 'light_yellow'))
             barge_lucky = True
 
-    elif second_sel == 'Knock':
+    elif cabin_sel == 'Knock':
         # User rolls die
-        second_roll = 'Roll the die to see who opens the door.'
-        second_die = roll_dice(second_roll, 6)
+        second_die = roll_dice(knock_roll, 6)
 
-        # Outcome of second die roll
+        # Outcome of cabin knocking die roll
         if (second_die % 2) != 0:
-            # Lucky outcome
-            print(colored('''An old crone opens the door
-and warmly welcomes you inside.''', 'light_grey'))
+            # Cabin knocking lucky outcome
+            print(colored(knock_lucky_story, 'light_grey'))
             knock_lucky = True
         else:
-            # Unlucky outcome
-            print(colored('''An old crone opens the door
-and looks at you suspiciously.
-Do you 1) Talk to her or 2) try to Knock her Out (Knockout)?\n''',
-                          'light_yellow'))
+            # Cabin knocking unlucky outcome
+            print(colored(knock_unlucky_story, 'light_yellow'))
             knock_lucky = False
 
-    if (second_sel == 'Barge' and barge_lucky) \
-            or (second_sel == 'Knock'
+    if (cabin_sel == 'Barge' and barge_lucky) \
+            or (cabin_sel == 'Knock'
                 and knock_lucky is False):
-        # Second choice sub choice outcome for the user
-        second_sub_req = 'Type in the number or word to make your selection: '
-        second_sub_invalid = 'Please type 1 or Talk, 2 or Knockout'
-        second_sub_choices = ['Talk', 'Knockout']
-        second_sub_sel = game_selections(second_sub_req, second_sub_invalid,
-                                         *second_sub_choices)
-        if second_sub_sel == 'Talk':
+        # Cabin story unlucky choice outcome for the user
+        cabin_unlucky_sel = game_selections(cabin_unlucky_req,
+                                            cabin_unlucky_invalid,
+                                            *cabin_unlucky_choices)
+        if cabin_unlucky_sel == 'Talk':
             talk_crone = True
         else:
             ko_choice = True
@@ -225,58 +188,45 @@ Do you 1) Talk to her or 2) try to Knock her Out (Knockout)?\n''',
             time.sleep(3)
 
     if (
-            (second_sel == 'Knock' and knock_lucky) or
+            (cabin_sel == 'Knock' and knock_lucky) or
             (knock_lucky is False and talk_crone) or
-            (second_sel == 'Barge' and talk_crone)
+            (cabin_sel == 'Barge' and talk_crone)
     ):
-        # Third story choice for the user
+        # Crone story choice for the user
         print(colored
-              ('''You are the one the crone has seen in visions previously.
-She wants to train you as her protege...
-Do you agree?\n''', 'light_yellow'))
+              (crone_choice_story, 'light_yellow'))
 
-        third_req = 'Type in 1 or Yes, 2 or No, to make your selection: '
-        third_invalid = 'Please type 1 or Yes, 2 or No'
-        third_choices = ['Yes', 'No']
-        third_sel = game_selections(third_req, third_invalid, *third_choices)
+        crone_sel = game_selections(crone_req, crone_invalid, *crone_choices)
 
-        if third_sel == 'Yes':
-            # First good ending option
+        if crone_sel == 'Yes':
+            # Crone lucky ending option
             print(colored
-                  ('''You begin learning everything you can from your mentor.
-Your story ends here... for now!''', 'light_green', attrs=['bold']))
+                  (crone_lucky_outcome, 'light_green', attrs=['bold']))
             raise NewGame
         else:
-            # Third story die roll for potential unlucky outcome
-            print(colored('''The crone can\'t risk anyone else
-finding her cabin and attacks you.\n''', 'light_grey'))
+            # Die roll for crone unlucky outcome
+            print(colored(crone_unlucky_story, 'light_grey'))
             disagree = True
             # Pause before continuing the game
             time.sleep(3)
 
     if disagree or ko_choice:
-        third_roll = '''Roll the die to see
-if you\'re able to overpower the old crone!'''
+        crone_roll = crone_unlucky_roll
         # User rolls die
-        third_die = roll_dice(third_roll, 20)
+        crone_die = roll_dice(crone_roll, 20)
 
-        # Outcome of third die roll
-        if 16 <= third_die <= 20:
+        # Outcome of crone die roll
+        if 16 <= crone_die <= 20:
             # Game over for die rolls 16 - 20
-            print(colored('''You try to defend yourself,
-but the old crone overcomes you.
-You're unable to stand against her might!\n''', 'light_red', attrs=['bold']))
+            print(colored(crone_unlucky_outcome, 'light_red', attrs=['bold']))
             # Pause before continuing the game
             time.sleep(3)
             print(colored
-                  ('You died... Game Over', 'light_red', attrs=['bold']))
+                  (game_over, 'light_red', attrs=['bold']))
             raise NewGame
         else:
-            # Second good story ending option
-            print(colored('''You defeat the crone, take over her cabin,
-and start looking through all of her ancient tomes.
-You learn all you can of her magic and enchantments.
-Your story ends here... for now!''', 'light_green', attrs=['bold']))
+            # Crone defeated ending option
+            print(colored(crone_defeat_outcome, 'light_green', attrs=['bold']))
             raise NewGame
 
 
@@ -298,17 +248,7 @@ def gameplay():
             pass
         while True:
             # See if the user wants to play again
-            restart = input('Play again? Y or N\n')
-            if restart == 'Y' or restart == 'y':
-                # Restart the game
-                gameplay()
-            elif restart == 'N' or restart == 'n':
-                # Quit the game
-                quit()
-            else:
-                # Ask for valid input
-                print('Please enter "Y" or "N"')
-                continue
+            restart_game()
 
 
 # Run the game
