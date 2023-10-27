@@ -68,10 +68,19 @@ Minor errors were identified in the validator (tabs vs spaces and lines too long
 
 The site was deployed via the following steps:
 1. Cloned the basic repository from [Code Institute](https://github.com/Code-Institute-Org/p3-template)
+   1. Code > Open with GitHub Desktop
 2. Created new repository in [own GitHub](https://github.com/crazycooky77/ci_project3) for the cloned repository
 3. Created new app on [Heroku](https://dashboard.heroku.com/apps)
+   1. New > Create new app
+   2. Provide app name and select region > Create app
 4. Linked Heroku to cloned GitHub repository
+   1. Click GitHub in the Deployment method section
+   2. Log into GitHub, provide access to Heroku, and type in the repository name
+   3. Search
+   4. Connect
 5. Enabled automatic deploys
+   1. Tick the box for Automatic deploys in the corresponding section
+6. Added python and nodejs buildpacks in the Settings > Buildpacks section
 
 ### Issues
 
