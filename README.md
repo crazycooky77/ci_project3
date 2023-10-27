@@ -41,6 +41,16 @@ Target audience and reasons for playing (and playing again). How long is a game,
 
 ## Technologies
 
+- [Lucidchart](https://www.lucidchart.com/pages) to map out the storyline and different outcomes
+- [Pycharm](https://www.jetbrains.com/pycharm/) IDE linked to GitHub to edit the project files
+- [GitHub](https://github.com/) to store the code and for version-control
+- [GitHub Desktop](https://desktop.github.com/) to be able to commit changes to the code without having to use the web-based tool
+- [Heroku](https://heroku.com/) to deploy the app and have it available for use online
+- [Python](https://www.python.org/) for project functionality
+  - [Termcolor](https://pypi.org/project/termcolor/) package to make different story parts clear
+  - [Random](https://docs.python.org/3/library/random.html) package for random die rolls in the game
+  - [Time](https://docs.python.org/3/library/time.html) package to integrate strategic pauses into the game
+
 ## Testing 
 1. 
 
