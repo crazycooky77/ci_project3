@@ -15,7 +15,11 @@ Join us for a lovely Dungeons & Dragons type game called Woodlands and Witches! 
 ## User Experience
 
 ### Gameplay
-Target audience and reasons for playing (and playing again). How long is a game, single or multiplayer.
+Woodlands and Witches is a story-based game. You will be given choices and scenarios, which will allow you to progress through the story. Your decisions will have an impact on the overall possible outcomes. Though there is some luck involved as well! Certain situations will call for you to roll a die. Cross your fingers and hope for a good outcome when the time comes!
+
+As there are various different scenarios, based on your choices, and on luck, you have the option to play again, once you finish a game, to see what other possibilities exist.
+
+The game is currently only a single-player game. It doesn't take long - about 5 minutes to get through it. This makes it perfect to relax and pass the time, without having to commit for a longer period.
 
 ### User Stories
 
@@ -47,7 +51,7 @@ Target audience and reasons for playing (and playing again). How long is a game,
 - [GitHub Desktop](https://desktop.github.com/) to be able to commit changes to the code without having to use the web-based tool
 - [Heroku](https://heroku.com/) to deploy the app and have it available for use online
 - [Python](https://www.python.org/) for project functionality
-  - [Termcolor](https://pypi.org/project/termcolor/) package to make different story parts clear
+  - [Termcolor](https://pypi.org/project/termcolor/) package to make different story parts clear (added to requirements.txt)
   - [Random](https://docs.python.org/3/library/random.html) package for random die rolls in the game
   - [Time](https://docs.python.org/3/library/time.html) package to integrate strategic pauses into the game
 
