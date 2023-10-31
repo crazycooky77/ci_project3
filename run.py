@@ -17,6 +17,7 @@ def restart_game():
     restart = input('Play again? Y or N\n')
     if restart == 'Y' or restart == 'y':
         # Restart the game
+        print('\n')
         gameplay()
     elif restart == 'N' or restart == 'n':
         # Quit the game
