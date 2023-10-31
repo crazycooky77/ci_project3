@@ -55,11 +55,25 @@ The game is currently only a single-player game. It doesn't take long - about 5 
   - [Random](https://docs.python.org/3/library/random.html) package for random die rolls in the game
   - [Time](https://docs.python.org/3/library/time.html) package to integrate strategic pauses into the game
 
-## Testing 
-1. 
+## Testing
 
-| Function | Expectation | Outcome | Comments |
-|----------|:-----------:|:-------:|----------|
+| Function                                      |                                                                     Expectation                                                                      | Pass     |
+|-----------------------------------------------|:----------------------------------------------------------------------------------------------------------------------------------------------------:|:---------|
+| Game start                                    |                                          Welcome message and character selection with input field for user                                           | &check;  |
+| Colour-coded game text                        |                               Game text is colour-coded, according to the type of text (see Features for more details)                               | &check;  |
+| Number input for user selection               |                      When the user enters a number to select an option, the game should accept the correct corresponding option                      | &check;  |
+| Word input for user selection                 |              When the user enters a word to select an option, the game should accept the correct matching option, regardless of casing               | &check;  |
+| Incorrect input for user selection            |  When the user enters an invalid number/word to select an option, the game should provide an error message and request another input from the user   | &check;  |
+| Confirmation messages for correct user inputs |               When the user provides a correct input to select an option, the game should show a message, confirming the user's input                | &check;  |
+| Pauses between game scenarios                 |           The game should have adequate pauses between selections and scenarios in the game, so as to not rush the user through the story            | &check;  |
+| Die rolls                                     |                               Any input, including no input, starts the die roll function, when requested by the game                                | &check;  |
+| Confirmation of number rolled for die rolls   |                   Whenever the user rolls the die, the game should provide a message to let the user know what number they rolled                    | &check;  |
+| Character-specific scenarios                  | For game scenarios, where there are different outcomes, depending on the character the user selected, the game provides the correct, custom, outcome | &check;  |
+| Game ending                                   |                                      When a game ends, a message should appear, offering the user to play again                                      | &check;  |
+| Restart game                                  |                    When the game asks the user if they want to play again, and the user selects Y/y, the game should start again                     | &check;  |
+| Finish playing                                |       When the game asks the user if they want to play again, and the user selects N/n, the game should provide a message and quit the program       | &check;  |
+| All scenario flows according to Lucidchart    |                 The game provides options, requests inputs, and determines outcomes, based on the initial outline in the Lucidchart                  | &check;  |
+
 
 ### Validator Testing 
 
@@ -85,9 +99,6 @@ The site was deployed via the following steps:
 5. Enabled automatic deploys
    1. Tick the box for Automatic deploys in the corresponding section
 6. Added python and nodejs buildpacks in the Settings > Buildpacks section
-
-### Issues
-
 
 ## Credits 
 
