@@ -21,6 +21,7 @@ def restart_game():
         gameplay()
     elif restart == 'N' or restart == 'n':
         # Quit the game
+        print('Quitting game - thanks for playing!\n')
         quit()
     else:
         # Ask for valid input
