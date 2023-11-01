@@ -78,7 +78,7 @@ The game is currently only a single-player game. It doesn't take long - about 5 
 ### Validator Testing 
 
 #### PEP8
-Minor errors were identified in the validator (tabs vs spaces and lines too long). Everything was resolved and no further errors are shown in PEP8.
+Both .py files were tested. Minor errors were identified in the validator (tabs vs spaces and lines too long). Everything was resolved and no further errors are shown in PEP8.
 
 <img src='assets/images/pep8.webp' alt='PEP8 result'>
 
